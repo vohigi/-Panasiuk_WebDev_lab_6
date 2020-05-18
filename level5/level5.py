@@ -1,4 +1,4 @@
-import webapp2 as webapp
+import webapp3 as webapp
 import os
 import jinja2
 
@@ -11,12 +11,12 @@ def render(tpl_path, context = {}):
 class MainPage(webapp.RequestHandler): 
   def get(self):
     # Disable the reflected XSS filter for demonstration purposes
-    self.response.headers.add_header("X-XSS-Protection", "0")
+    self.response.headers.add_header("X-XSS-Protection", "1")
  
     # Route the request to the appropriate template
     if "signup" in self.request.path:
       self.response.out.write(render('signup.html', 
-        {'next': self.request.get('next')}))
+        {'next': self.request.get('next', 'confirm')}))
     elif "confirm" in self.request.path:
       self.response.out.write(render('confirm.html', 
         {'next': self.request.get('next', 'welcome')}))

