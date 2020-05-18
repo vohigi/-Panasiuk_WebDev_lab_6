@@ -41,7 +41,8 @@
  
         document.getElementById('post-form').onsubmit = function() {
           var message = document.getElementById('post-content').value;
-          DB.save(message, function() { displayPosts() } );
+          //solution
+          DB.save(message.replace(/</g, "&lt;").replace(/>/g, "&gt;"), function() { displayPosts() } );
           document.getElementById('post-content').value = "";
           return false;
         }

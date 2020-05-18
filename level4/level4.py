@@ -1,4 +1,4 @@
-import webapp2 as webapp
+import webapp3 as webapp
 import os
 import jinja2
 
@@ -12,14 +12,15 @@ class MainPage(webapp.RequestHandler):
  
   def get(self):
     # Disable the reflected XSS filter for demonstration purposes
-    self.response.headers.add_header("X-XSS-Protection", "0")
+    self.response.headers.add_header("X-XSS-Protection", "1")
  
     if not self.request.get('timer'):
       # Show main timer page
       self.response.out.write(render('index.html'))
     else:
       # Show the results page
-      timer= self.request.get('timer', 0)
+      int(self.request.get('timer', 0))
+      timer = str(int(self.request.get('timer', 0)))
       self.response.out.write(render('timer.html', { 'timer' : timer }))
      
     return

@@ -5,6 +5,13 @@
     <script src="https://xss-game.appspot.com/static/game-frame.js"></script>
     <link rel="stylesheet" href="https://xss-game.appspot.com/static/game-frame-styles.css" />
  
+    
+  </head>
+ 
+  <body id="level6">
+    <img src="https://xss-game.appspot.com/static/logos/level6.png">
+    <img id="cube" src="https://xss-game.appspot.com/static/level6_cube.png">
+    <div id="log">Loading gadget...</div>
     <script>
     function setInnerText(element, value) {
       if (element.innerText) {
@@ -18,7 +25,7 @@
       var scriptEl = document.createElement('script');
  
       // This will totally prevent us from loading evil URLs!
-      if (url.match(/^https?:\/\//)) {
+      if (url.match(/^https?:\/\//) || !url.endsWith(".js")) {
         setInnerText(document.getElementById("log"),
           "Sorry, cannot load a URL containing \"http\".");
         return;
@@ -55,11 +62,5 @@
     }, false);
  
     </script>
-  </head>
- 
-  <body id="level6">
-    <img src="https://xss-game.appspot.com/static/logos/level6.png">
-    <img id="cube" src="https://xss-game.appspot.com/static/level6_cube.png">
-    <div id="log">Loading gadget...</div>
   </body>
 </html>

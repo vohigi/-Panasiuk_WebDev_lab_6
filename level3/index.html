@@ -34,13 +34,13 @@
       }
  
       window.onload = function() { 
-        chooseTab(unescape(self.location.hash.substr(1)) || "1");
+        chooseTab(unescape(parseInt(self.location.hash.substr(1))) || "1");
       }
  
       // Extra code so that we can communicate with the parent page
       window.addEventListener("message", function(event){
         if (event.source == parent) {
-          chooseTab(unescape(self.location.hash.substr(1)));
+          chooseTab(unescape(parseInt(self.location.hash.substr(1))));
         }
       }, false);
     </script>

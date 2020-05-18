@@ -14,18 +14,26 @@ page_header = """
  
 page_footer = """
     </div>
+    <script>
+      document.getElementById("button").addEventListener("click", function(e){
+        e.preventDefault();
+        const query = document.getElementById("query");
+        query.value = query.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        document.getElementById("form").submit();
+      });
+    </script>
   </body>
 </html>
 """
  
 main_page_markup = """
-<form action="" method="GET">
+<form action="" method="GET" id="form">
   <input id="query" name="query" value="Enter query here..."
     onfocus="this.value=''">
   <input id="button" type="submit" value="Search">
 </form>
 """
-import webapp2 as webapp
+import webapp3 as webapp
 class MainPage(webapp.RequestHandler):
  
   def render_string(self, s):
@@ -33,7 +41,7 @@ class MainPage(webapp.RequestHandler):
  
   def get(self):
     # Disable the reflected XSS filter for demonstration purposes
-    self.response.headers.add_header("X-XSS-Protection", "0")
+    self.response.headers.add_header("X-XSS-Protection", "1")
  
     if not self.request.get('query'):
       # Show main search page
